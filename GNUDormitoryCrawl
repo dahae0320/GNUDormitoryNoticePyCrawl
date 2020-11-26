@@ -1,0 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+import firebase_admin
+from firebase_admin import credentials, db
+
+
+cred = credentials.Certificate("mykey.json")
+firebase_admin.initialize_app(cred, {
+    # 'databaseURL' : '데이터 베이스 URL'
+    'databaseURL' : 'https://gnudormitorynotice.firebaseio.com/'
+})
+
+ref = db.reference('공지1')
+ref.update({'공지 제목' : '안녕하세요 오늘은...'})
+# hi
+
+data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardList.jsp?groupNo=11171&searchType=&searchString=&category=&type=&cpage=1')
+data.encoding = "UTF-8"
+
+parser = BeautifulSoup(data.text, 'html.parser')    #, from_encoding='utf-8'
+noticenum = parser.select("#body_content > form > div > div.board > table > tbody > tr.row1 > td.first")[0].text
+
+print(noticenum)
