@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import firebase_admin
 from firebase_admin import credentials, db
 
-
 cred = credentials.Certificate("mykey.json")
 firebase_admin.initialize_app(cred, {
     # 'databaseURL' : '데이터 베이스 URL'
