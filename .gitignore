@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-gnudormitory/**.json
+gnudormitory/**/*.json
 
 # C extensions
 *.so
