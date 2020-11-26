@@ -12,7 +12,7 @@ firebase_admin.initialize_app(cred, {
 
 ref = db.reference('공지1')
 ref.update({'공지 제목' : '안녕하세요 오늘은...'})
-
+# hi
 
 data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardList.jsp?groupNo=11171&searchType=&searchString=&category=&type=&cpage=1')
 data.encoding = "UTF-8"
