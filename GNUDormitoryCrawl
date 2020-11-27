@@ -9,14 +9,24 @@ firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://gnudormitorynotice.firebaseio.com/'
 })
 
-ref = db.reference('공지1')
-ref.update({'공지 제목' : '안녕하세요 오늘은...'})
-# hi
+# 공지사항 페이지 1
+for i in range(15):
+    num = i+1
+    data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardList.jsp?groupNo=11171&searchType=&searchString=&category=&type=&cpage=1')
+    data.encoding = "UTF-8"
+    parser = BeautifulSoup(data.text, 'html.parser')    #, from_encoding='utf-8'
+    notice_num = parser.select("#body_content > form > div > div.board > table > tbody > tr.row"+ str(num) +"> td.first")[0].text
+    # print(num)
+    # print(notice_num.strip())
 
-data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardList.jsp?groupNo=11171&searchType=&searchString=&category=&type=&cpage=1')
-data.encoding = "UTF-8"
+    detail_data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardView.jsp?groupNo=11171&boardNo='+str(notice_num.strip()))
+    parser1 = BeautifulSoup(detail_data.text, 'html.parser')
+    title = parser1.select("#body_content > form > div.board > div.view > div.title > h3:not(span)")[0].text
+    print(title)
+    # description =
+    # author =
+    # date =
 
-parser = BeautifulSoup(data.text, 'html.parser')    #, from_encoding='utf-8'
-noticenum = parser.select("#body_content > form > div > div.board > table > tbody > tr.row1 > td.first")[0].text
+    # ref = db.reference(notice_num.strip())
+    # ref.update({'title' : '안녕하세요 오늘은...'})
 
-print(noticenum)
