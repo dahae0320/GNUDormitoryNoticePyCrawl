@@ -24,9 +24,13 @@ for i in range(15):
     title = parser1.select("#body_content > form > div.board > div.view > div.title > h3:not(span)")[0].text
     description = parser1.select("#body_content > form > div.board > div.view > div.substance")[0].text
     author = parser1.select("#body_content > form > div.board > div.view > div.info > dl.col4 > dd:nth-child(4)")[0].text
-    print(author)
-    # date =
+    date = parser1.select("#body_content > form > div.board > div.view > div.info > dl.col4 > dd:nth-child(6)")[0].text
+    # print(date)
 
-    # ref = db.reference(notice_num.strip())
-    # ref.update({'title' : '안녕하세요 오늘은...'})
+    ref = db.reference(notice_num.strip())
+    ref.update( {'title' : title},
+                {'description' : description},
+                {'author' : author},
+                {'date' : date},
+                )
 
