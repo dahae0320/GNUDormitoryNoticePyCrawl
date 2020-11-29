@@ -22,9 +22,9 @@ for i in range(15):
     detail_data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardView.jsp?groupNo=11171&boardNo='+str(notice_num.strip()))
     parser1 = BeautifulSoup(detail_data.text, 'html.parser')
     title = parser1.select("#body_content > form > div.board > div.view > div.title > h3:not(span)")[0].text
-    print(title)
-    # description =
-    # author =
+    description = parser1.select("#body_content > form > div.board > div.view > div.substance")[0].text
+    author = parser1.select("#body_content > form > div.board > div.view > div.info > dl.col4 > dd:nth-child(4)")[0].text
+    print(author)
     # date =
 
     # ref = db.reference(notice_num.strip())
