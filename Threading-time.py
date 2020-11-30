@@ -4,7 +4,7 @@ from GNUDormitoryCrawl import noticePageCrawler
 
 def thread_run():
     print('=====', time.ctime(), '=====')
-    for i in range(1,3):
+    for i in range(1,2):
         #크롤링 코드
         a = noticePageCrawler()
         if a == 0:
@@ -13,3 +13,6 @@ def thread_run():
     threading.Timer(5, thread_run).start() #5초마다 반복
 
 thread_run()
+
+def test_answer():
+    assert thread_run()

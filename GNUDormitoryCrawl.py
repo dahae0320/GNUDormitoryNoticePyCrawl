@@ -42,7 +42,8 @@ def noticePageCrawler():
 
         ++number
 
-noticePageCrawler()
+# noticePageCrawler()
 
 def test_answer():
-    assert noticePageCrawler(3)
+    exist = noticePageCrawler()
+    assert exist
