@@ -1,8 +1,10 @@
+# json
+*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-gnudormitory/mykey.json
 
 # C extensions
 *.so
