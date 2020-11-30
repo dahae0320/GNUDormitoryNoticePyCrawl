@@ -10,13 +10,19 @@ firebase_admin.initialize_app(cred, {
 })
 
 # 공지사항 페이지별로 데이터
-def noticePageCrawler(number):
+def noticePageCrawler():
+    number = 1
     for i in range(15):
         num = i+1
         data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardList.jsp?groupNo=11171&searchType=&searchString=&category=&type=&cpage='+str(number))
         data.encoding = "UTF-8"
         parser = BeautifulSoup(data.text, 'html.parser')    #, from_encoding='utf-8'
         notice_num = parser.select("#body_content > form > div > div.board > table > tbody > tr.row"+ str(num) +"> td.first")[0].text
+
+        ref = db.reference(notice_num.strip())
+        print(ref.get()['notice_num'])
+        if notice_num.strip() == ref.get()['notice_num']:
+            return
         # print(num)
         # print(notice_num.strip())
 
@@ -26,16 +32,17 @@ def noticePageCrawler(number):
         description = parser1.select("#body_content > form > div.board > div.view > div.substance")[0].text
         author = parser1.select("#body_content > form > div.board > div.view > div.info > dl.col4 > dd:nth-child(4)")[0].text
         date = parser1.select("#body_content > form > div.board > div.view > div.info > dl.col4 > dd:nth-child(6)")[0].text
-        # print(title)
 
-        ref = db.reference(notice_num.strip())
+        # 데이터 삽입
+        ref.update({'notice_num': notice_num.strip()})
         ref.update({'title' : title})
         ref.update({'description' : description})
         ref.update({'author' : author})
         ref.update({'date' : date})
 
-for i in range(8):
-    noticePageCrawler(i+1)
+        ++number
+
+noticePageCrawler()
 
 def test_answer():
     assert noticePageCrawler(3)
