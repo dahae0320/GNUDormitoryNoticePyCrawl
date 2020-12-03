@@ -35,7 +35,7 @@ def noticePageCrawler():
 
         # 데이터 삽입
         ref.update({'notice_num': notice_num.strip()})
-        ref.update({'title' : title})
+        ref.update({'title' : title[2:]})
         ref.update({'description' : description})
         ref.update({'author' : author})
         ref.update({'date' : date})
