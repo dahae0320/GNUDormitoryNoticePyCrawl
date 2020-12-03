@@ -2,6 +2,7 @@ import time
 import threading
 from GNUDormitoryCrawl import noticePageCrawler
 
+
 def thread_run():
     print('=====', time.ctime(), '=====')
     for i in range(1,2):
