@@ -6,5 +6,6 @@ install:
   - pip install -r requirements.txt
   - pip install requests
   - pip install bs4
+  - pip install firebase-admin
 # command to run tests
 script: pytest Threading-time.py
