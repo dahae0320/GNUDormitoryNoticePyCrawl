@@ -2,6 +2,9 @@ language: python
 python:
   - "3.7"
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install:
+  - pip install -r requirements.txt
+  - pip install request
+  - pip install bs4
 # command to run tests
-script: pytest GNUDormitoryCrawl.py
+script: pytest Threading-time.py
