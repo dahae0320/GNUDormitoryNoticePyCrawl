@@ -46,4 +46,4 @@ def noticePageCrawler():
 
 def test_answer():
     exist = noticePageCrawler()
-    assert exist
+    return exist

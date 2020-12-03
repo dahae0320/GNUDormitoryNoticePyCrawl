@@ -15,4 +15,4 @@ def thread_run():
 thread_run()
 
 def test_answer():
-    assert thread_run()
+    return thread_run()
