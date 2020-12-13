@@ -11,7 +11,7 @@ def thread_run():
         if a == 0:
             print('새로 올라온 공지가 없습니다.')
         print('Thread running - ', i)
-    threading.Timer(5, thread_run).start() #5초마다 반복
+    threading.Timer(86400, thread_run).start() #5초마다 반복
 
 thread_run()
 
