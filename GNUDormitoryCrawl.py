@@ -23,8 +23,6 @@ def noticePageCrawler():
         print(ref.get()['notice_num'])
         if notice_num.strip() == ref.get()['notice_num']:
             return
-        # print(num)
-        # print(notice_num.strip())
 
         detail_data = requests.get('http://dorm.gnu.ac.kr/program/multipleboard/BoardView.jsp?groupNo=11171&boardNo='+str(notice_num.strip()))
         parser1 = BeautifulSoup(detail_data.text, 'html.parser')
